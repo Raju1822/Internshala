@@ -31,10 +31,18 @@ class Cars extends CI_Controller {
 		
 		
 	}
+	public function checklogin()
+	{
+		if(!$this->session->userdata('logged_in'))
+		{
+			$this->session->set_flashdata('registered', 'Please Login...!', 300);
+            redirect('/');
+		}
+
+	}
 
 	public function addcar()
 	{
-		
 		$this->load->view('add_car.php');
 	}
 
@@ -44,10 +52,48 @@ class Cars extends CI_Controller {
         $data['vehicle_number'] = $this->input->post('carNumber');
         $data['seating_cap'] = $this->input->post('seat');
         $data['rent_pd'] = $this->input->post('rent');
-
+       
 		$this->Home_Model->savecardetail($data);
 		$this->session->set_flashdata('registered', 'New car added successfully', 300);
 		redirect('index.php/cars/');
+	}
+
+	public function editcar($id)
+	{
+		$item['detail'] = $this->Home_Model->cardetail($id);
+		$this->load->view('edit_detail.php', $item);
+	}
+
+	public function updatecar()
+	{
+		$carid = $this->input->post('carid');
+		$data['vehicle_model'] = $this->input->post('carModel');
+        $data['vehicle_number'] = $this->input->post('carNumber');
+        $data['seating_cap'] = $this->input->post('seat');
+        $data['rent_pd'] = $this->input->post('rent');
+		$this->Home_Model->updatecardetail($carid, $data);
+		$this->session->set_flashdata('registered', 'Car detail updated successfully', 300);
+		redirect('index.php/cars/');
+	}
+
+	public function rent()
+	{
+		$data['id'] = $this->input->post('carid');
+		$data['vehicle_model'] = $this->input->post('model');
+        $data['vehicle_number'] = $this->input->post('num');
+        $data['seating_cap'] = $this->input->post('seat');
+        $data['rent_pd'] = $this->input->post('rentpd');
+		$data['day'] = $this->input->post('day');
+		$data['start_date'] = date('Y-m-d');
+		$this->Home_Model->rentcar($data);
+		$this->session->set_flashdata('registered', 'Car rent successfully', 300);
+		redirect('index.php/cars/');
+	}
+
+	public function bookedcar()
+	{
+	    $item['detail'] = $this->Home_Model->getbookedcar();
+	    $this->load->view('booked_car.php', $item);
 	}
 
 }

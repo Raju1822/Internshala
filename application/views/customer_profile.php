@@ -46,6 +46,15 @@
     <h2><hr></h2>
 </div>
 
+
+<script>
+        var t=setTimeout("document.getElementById('myMsg').style.display='none';",8000);
+    </script>
+   <div>
+    <p style="color:green; text-align:center;margin:10px;" id="myMsg"><?php echo $this->session->flashdata('registered'); ?></p>
+   </div>
+
+
 <div class="flex-container">
 
 <?php  
@@ -59,7 +68,6 @@ foreach($detail as $deta) :
  
      
         <div class="card">
-       
         <div class="container2">
         <p class="car"> Car : <?php echo $detail[$i]['id'] ?> </p>
             <table>
@@ -87,13 +95,41 @@ foreach($detail as $deta) :
                 <td><?php echo $detail[$i]['rent_pd'] ?></td>
             
             </tr>
-            
+    <form action="<?php echo base_url();?>index.php/cars/rent" method="post">
+            <tr>
+                <td> Rent for</td>
+                <td>:</td>
+                <td>
+                <label for="cars"></label>
+                    <select id="cars" name="day">
+                        <option>Enter day</option>
+                        <option value="1">1 Day</option>
+                        <option value="2">2 Days</option>
+                        <option value="3">3 Days</option>
+                        <option value="4">4 Days</option>
+                        <option value="5">5 Days</option>
+                        <option value="6">6 Days</option>
+                        <option value="7">7 Days</option>
+                        <option value="8">8 Days</option>
+                        <option value="9">9 Days</option>
+                        <option value="10">10 Days</option>
+                    </select>
+                </td>
+            </tr>
             </table>
         <h4>
-        <button>Rent Car</button>
+            
+                <input type="hidden" name="carid" value="<?php echo $detail[$i]['id'] ?>">
+                <input type="hidden" name="model" value="<?php echo $detail[$i]['vehicle_model'] ?>">
+                <input type="hidden" name="num" value="<?php echo $detail[$i]['vehicle_number'] ?>">
+                <input type="hidden" name="seat" value="<?php echo $detail[$i]['seating_cap'] ?>">
+                <input type="hidden" name="rentpd" value="<?php echo $detail[$i]['rent_pd'] ?>">
+                <button type="submit">Rent Car</button>
+            </form>
         <h4>
         </div>
-         </div>
+    
+    </div>
     
 
 
@@ -104,6 +140,31 @@ foreach($detail as $deta) :
 
 </div>
 
+
+
+
+<script>
+	function reveal_menu() {
+    var brand = document.getElementById("navbar-brand");
+    var button = document.getElementById("btn");
+    var list = document.getElementById("list");
+    var bottom_list = document.getElementById("bottom_list");
+
+    list.classList.toggle("shown");
+    bottom_list.classList.toggle("shown");
+
+    if (list.classList.contains("shown")) {
+        button.innerHTML = "close";
+        button.style.color = "black";
+        brand.style.color = "black";
+    }
+    else {
+        button.innerHTML = "menu";
+        button.style.color = "black";
+        brand.style.color = "black";
+    }
+}
+</script>
 
 
 </body>

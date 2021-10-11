@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">   
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/main.css"> 
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bookedcar.css"> 
+
 
 </head>
 
@@ -28,9 +30,9 @@
 
             <ul id="list" class="hidden">
                 <li><a href="<?php echo base_url();?>">Home</a></li>
-                <li id="active"><a href="#">Available Cars to Rent</a></li>
+                <li><a href="<?php echo base_url();?>index.php/cars">Available Cars to Rent</a></li>
                 <li><a href="<?php echo base_url();?>index.php/cars/addcar">Add New Cars</a></li>
-                <li><a href="<?php echo base_url();?>index.php/cars/bookedcar">Booked Cars</a></li>
+                <li id="active"><a href="<?php echo base_url();?>index.php/cars/bookedcar">Booked Cars</a></li>
                 <li><a href="<?php echo base_url();?>index.php/welcome/logout">Logout</a></li>
             </ul>
 
@@ -46,72 +48,45 @@
     <h2><hr></h2>
 </div>
 
-<script>
-        var t=setTimeout("document.getElementById('myMsg').style.display='none';",8000);
-    </script>
-   <div>
-    <p style="color:green; text-align:center;margin:10px;" id="myMsg"><?php echo $this->session->flashdata('registered'); ?></p>
-   </div>
-
 <div class="flex-container">
+            <table class="striped">
+                  <thead>
+                  <tr>
+                    <th>Sr. No.</th>
+                    <th>Vehicle Id</th>
+                    <th>Vehicle Model</th>
+                    <th>Vehicle Number</th>
+                    <th>Seating Capacity</th>
+                    <th>Rent Per Day</th>
+                    <th>Number of Days</th>
+                    <th>Start Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <?php 
+                    $i = 0;
+                    foreach($detail as $cnt): 
+                  ?>
+                      <tr>
+                        <td><?php echo $i+1; ?></td>
+                        <td><?php echo $detail[$i]['id']; ?></td>
+                        <td><?php echo $detail[$i]['vehicle_model']; ?></td>
+                        <td><?php echo $detail[$i]['vehicle_number']; ?></td>
+                        <td><?php echo $detail[$i]['seating_cap']; ?></td>
+                        <td><?php echo $detail[$i]['rent_pd']; ?></td>
+                        <td><?php echo $detail[$i]['day']; ?></td>
+                        <td><?php echo $detail[$i]['start_date']; ?></td>
+                    
+                      </tr>
+                    <?php 
+                      $i++;
+                      endforeach;
+                    ?>
+                  
+                  </tbody>
+                </table>
 
-<?php  
-$i=0;
-foreach($detail as $deta) :
-
-    if($i % 3 == 0) {
-        echo '</div><div class="flex-container"><br>';
-    }
-?>
- 
-     
-        <div class="card">
-       
-        <div class="container2">
-        <p class="car"> Car : <?php echo $detail[$i]['id'] ?> </p>
-        <hr>
-            <table>
-            <tr>  
-                <td> Vehicle model</td>
-                <td>:</td>
-                <td><?php echo $detail[$i]['vehicle_model'] ?></td>
-            
-            </tr>
-            <tr>  
-                <td>Vehicle number</td>
-                <td>:</td>
-                <td><?php echo $detail[$i]['vehicle_number'] ?></td>
-            
-            </tr>
-            <tr>  
-                <td>Seating capacity</td>
-                <td>:</td>
-                <td><?php echo $detail[$i]['seating_cap'] ?></td>
-            
-            </tr>
-            <tr>  
-                <td>Rent per day</td>
-                <td>:</td>
-                <td><?php echo $detail[$i]['rent_pd'] ?></td>
-            
-            </tr>
-            
-            </table>
-        <h4>
-        <button><a href="<?php echo site_url('index.php/cars/editcar').'/'.$detail[$i]['id'];?>">Edit Details</a></button>
-        <h4>
-        </div>
-         </div>
-    
-
-
-    <?php
-     $i=$i + 1;
-     endforeach;
-    ?>   
-
-</div>
-
+            </div>
 
 
 <script>
@@ -136,6 +111,3 @@ foreach($detail as $deta) :
     }
 }
 </script>
-
-
-</body>

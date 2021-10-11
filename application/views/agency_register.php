@@ -59,9 +59,7 @@
 		<div class="form-group">
             <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
         </div>        
-        <div class="form-group">
-			<label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
-		</div>
+       
 		<div class="form-group">
             <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
         </div>
@@ -69,4 +67,28 @@
 	
 </div>
 </body>
+
+
+<script>
+	function reveal_menu() {
+    var brand = document.getElementById("navbar-brand");
+    var button = document.getElementById("btn");
+    var list = document.getElementById("list");
+    var bottom_list = document.getElementById("bottom_list");
+
+    list.classList.toggle("shown");
+    bottom_list.classList.toggle("shown");
+
+    if (list.classList.contains("shown")) {
+        button.innerHTML = "close";
+        button.style.color = "black";
+        brand.style.color = "black";
+    }
+    else {
+        button.innerHTML = "menu";
+        button.style.color = "black";
+        brand.style.color = "black";
+    }
+}
+</script>
 </html>

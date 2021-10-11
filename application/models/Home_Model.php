@@ -33,10 +33,40 @@ class Home_Model extends CI_Model {
         // return $result->result_array ();
     }
 
+    function cardetail($id)
+    {
+        $this->db->select('*');
+        $this->db->from('cars');
+        $this->db->where('id',$id);
+        $val = $this->db->get();
+        return $data = $val->row_array();
+    }
     function savecardetail($data)
     {
         $this->db->insert('cars',$data);
         return true;
+    }
+
+    function updatecardetail($carid, $data)
+    {
+        
+        $this->db->where('id',$carid);
+        $this->db->update('cars',$data);
+        return true;
+    }
+
+    function rentcar($data)
+    {
+        $this->db->insert('rent_car',$data);
+        return true;
+    }
+
+    function getbookedcar()
+    {
+        $this->db->select('*');
+        $this->db->from('rent_car');
+        $val = $this->db->get();
+        return $data = $val->result_array();
     }
 
 }
