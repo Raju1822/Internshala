@@ -25,7 +25,7 @@
             </div>
             <ul id="list" class="hidden">
                 <li><a href="<?php echo base_url(); ?>">Home</a></li>
-                <li><a href="#">Available Cars</a></li>
+                <li><a href="<?php echo base_url(); ?>index.php/Cars">Available Cars to Rent</a></li>
             </ul>
             <ul id="bottom_list" class="hidden">
             </ul>

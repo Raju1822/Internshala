@@ -58,7 +58,9 @@ class Welcome extends CI_Controller
 				$this->load->view('agency_profile.php', $item);
 			}
 		} else {
-			print_r("not user");
+
+			$this->session->set_flashdata('registered', 'Please enter correct email / password..!', 300);
+            redirect('/');
 		}
 	}
 	public function register1()

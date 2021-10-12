@@ -34,7 +34,13 @@ class Cars extends CI_Controller {
 	}
 	public function addcar()
 	{
-		$this->load->view('add_car.php');
+		if($this->session->userdata('logged_in'))
+		 {
+			$this->load->view('add_car.php');
+		 }
+		else{
+            redirect('/');
+		}
 	}
 	public function Newcar()
 	{
@@ -48,8 +54,14 @@ class Cars extends CI_Controller {
 	}
 	public function editcar($id)
 	{
-		$item['detail'] = $this->Home_Model->cardetail($id);
-		$this->load->view('edit_detail.php', $item);
+		if($this->session->userdata('logged_in'))
+		{
+			$item['detail'] = $this->Home_Model->cardetail($id);
+			$this->load->view('edit_detail.php', $item);
+		}
+		else{
+			redirect('/');
+		}
 	}
 	public function updatecar()
 	{
@@ -77,7 +89,12 @@ class Cars extends CI_Controller {
 	}
 	public function bookedcar()
 	{
-	    $item['detail'] = $this->Home_Model->getbookedcar();
-	    $this->load->view('booked_car.php', $item);
+		if($this->session->userdata('logged_in')){
+			$item['detail'] = $this->Home_Model->getbookedcar();
+	   		 $this->load->view('booked_car.php', $item);
+		}
+		else{
+			redirect('/');
+		}
 	}
 }

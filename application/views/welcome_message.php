@@ -60,7 +60,6 @@
             </p>
             <p>
               <a href="">Forget password?</a>
-              <a href="">Create an account.</a>
             </p>
           </form>
         </div>
