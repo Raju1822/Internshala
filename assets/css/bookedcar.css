@@ -1,24 +1,24 @@
-table { 
-	width: 90%; 
-	border-collapse: collapse; 
-	margin:50px auto;
-	}
+table {
+	width: 90%;
+	border-collapse: collapse;
+	margin: 50px auto;
+}
 
 /* Zebra striping */
-tr:nth-of-type(odd) { 
-	background: #eee; 
-	}
+tr:nth-of-type(odd) {
+	background: #eee;
+}
 
-th { 
-	background: #4CAF50; 
-	color: white; 
-	font-weight: bold; 
-	}
+th {
+	background: #4caf50;
+	color: white;
+	font-weight: bold;
+}
 
-td, th { 
-	padding: 10px; 
-	border: 1px solid #ccc; 
-	text-align: left; 
+td,
+th {
+	padding: 10px;
+	border: 1px solid #ccc;
+	text-align: left;
 	font-size: 18px;
-	}
-
+}
