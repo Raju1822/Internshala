@@ -97,4 +97,5 @@ class Cars extends CI_Controller {
 			redirect('/');
 		}
 	}
+
 }
